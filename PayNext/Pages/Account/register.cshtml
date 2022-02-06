@@ -14,41 +14,59 @@
                 <h2>Create Account</h2>
             </div>
         </div>
-        <form>
+        <form method="post">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-6 mb-2 mt-2">
                     <label for="exampleFormControlInput1" class="form-label">First Name</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+                    <input type="text" class="form-control" asp-for="@Model.UserCreateDto.FirstName" required maxlength="15" placeholder="">
                 </div>
                 <div class="col-12 col-md-6 mb-2 mt-2">
                     <label for="exampleFormControlInput1" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+                    <input type="text" class="form-control" asp-for="@Model.UserCreateDto.LastName" required maxlength="15" placeholder="">
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-12 mb-2 mt-2">
                     <label for="exampleFormControlInput1" class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                    <input type="email" class="form-control" asp-for="@Model.UserCreateDto.Email" placeholder="" required>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-6 mb-2 mt-2">
+                    <label for="exampleFormControlInput1" class="form-label">Phone</label>
+                    <input type="text" class="form-control" asp-for="@Model.UserCreateDto.PhoneNumber" placeholder="" required pattern="^[0-9]{10}$">
+                </div>
+                <div class="col-12 col-md-6 mb-2 mt-2">
+                    <label for="exampleFormControlInput1" class="form-label">Plastic Card Number</label>
+                    <input type="text" class="form-control" asp-for="@Model.UserCreateDto.CardNumber" placeholder="">
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-12 col-md-6 mb-2 mt-2">
                     <label for="exampleFormControlInput1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="">
+                    <input type="password" class="form-control" asp-for="@Model.UserCreateDto.Password" required placeholder="">
                 </div>
                 <div class="col-12 col-md-6 mb-2 mt-2">
                     <label for="exampleFormControlInput1" class="form-label">Verify Password</label>
-                    <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="">
+                    <input type="password" class="form-control" asp-for="@Model.ConfirmPassword" placeholder="Confirm Password" required placeholder="">
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 col-md-7 forlink mt-4 text-center text-md-start">
                     Already have an account?
-                    <a href="login.html">Login here </a>
+                    <a asp-page="/Account/login">Login here </a>
                 </div>
                 <div class="col-10 col-md-5 mx-auto ms-md-auto mt-4">
-                    <button type="submit" class="btn btn-primary w-100">Create Account</button>
+                    <input type="submit" asp-page-handler="CreateUser" class="btn btn-primary w-100" value="Create Account">
                 </div>
+                @if (!String.IsNullOrEmpty(Model.ErrorMessage))
+                {
+                    <p id="ErrorMessage" class="" style="color:red;">@Model.ErrorMessage</p>
+                }
+                @if (!String.IsNullOrEmpty(Model.SuccessMessage))
+                {
+                    <p id="SuccessMessage" class="" style="color:darkgreen;">@Model.SuccessMessage</p>
+                }
             </div>
         </form>
     </div>

@@ -7,7 +7,7 @@ namespace PayNext.Core.Entities
 	public abstract class BaseEntity
 	{
 		#region Properties
-		public virtual int Id { get; protected set; }
+		public virtual int Id { get; set; }
 		#endregion
 	}
 }

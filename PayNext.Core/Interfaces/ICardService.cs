@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PayNext.Core.Interfaces
 {
-	public interface IUserService
+	public interface ICardService
 	{
-		Task<DatabaseResponse> RegisterAsync(UserCreateDto user);
+		Task<DatabaseResponse> GetCardByNumberAsync(string cardNumber);
 	}
 }
