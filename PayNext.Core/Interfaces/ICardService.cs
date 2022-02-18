@@ -8,6 +8,6 @@ namespace PayNext.Core.Interfaces
 {
 	public interface ICardService
 	{
-		Task<DatabaseResponse> GetCardByNumberAsync(string cardNumber);
+		Task<CardDto> GetCardByNumberAsync(string cardNumber);
 	}
 }

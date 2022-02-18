@@ -27,21 +27,32 @@ namespace PayNext.Core.Services
 		}
 		#endregion
 		#region Public Methods
-		public async Task<DatabaseResponse> GetCardByNumberAsync(string cardNumber)
+		public async Task<CardDto> GetCardByNumberAsync(string cardNumber)
 		{
-			var filterSpecification = new CardFilterSpecification(cardNumber);
-			var cardExists = await _cardRepository.ListAsync(filterSpecification);
+			try
+			{
+				var filterSpecification = new CardFilterSpecification(cardNumber);
+				var card = await _cardRepository.GetByIdAsync(filterSpecification);
+				var result = _mapper.Map<CardDto>(card);
+				//if (card != null)
+				//{
+				//	status = (int)DbReturnValue.RecordExists;
+				//}
+				//else
+				//{
+				//	status = (int)DbReturnValue.NotExists;
+				//}
+				return result;
 
-			var result = _mapper.Map<IReadOnlyList<Card>, IReadOnlyList<CardDto>>(cardExists);
-			if (result.Count > 0)
-			{
-				status = (int)DbReturnValue.RecordExists;
 			}
-			else
+			catch (Exception ex)
 			{
-				status = (int)DbReturnValue.NotExists;
+
+				throw ex;
 			}
-			return new DatabaseResponse { ResponseCode = status, Results = result };
+		
+			
+
 		}
 			#endregion
 		}

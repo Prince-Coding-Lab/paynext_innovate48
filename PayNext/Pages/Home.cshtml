@@ -1,0 +1,40 @@
+﻿@page
+@model PayNext.App.Pages.HomeModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Pages/Shared/_layout.cshtml";
+}
+<div class="container ml-200">
+    <div class="row align-items-center">
+        <div class="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-12 mt-5 ps-lg-5">
+            <h4>Payments made easy with your personalised PayNext Card</h4>
+            <div class="payboxes mt-5">
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 col-4 bdrr">
+                        <a href="step2.html">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>Pay</span>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-4 bdrr">
+                        <a href="step2.html">
+                            <i class="fas fa-store"></i>
+                            <span>Merchants</span>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-4">
+                        <i class="fas fa-digital-tachograph"></i>
+                        <span>Passbook</span>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-3">Select your payment methods or view your previous trnasaction under passbook.</p>
+            <p class="mt-3">Pay in easy instalments of your choice</p>
+
+        </div>
+        <div class="col-xl-7 col-lg-6 col-md-6 col-sm-6 col-12 text-center mt-5">
+            <img src="~/dist/images/paynext-card.png" class="img-fluid">
+        </div>
+    </div>
+
+</div>

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PayNext.Core.Dto;
+using PayNext.Core.Enums;
 using PayNext.Core.Interfaces;
 
 namespace PayNext.App.Pages.Account
@@ -35,10 +36,10 @@ namespace PayNext.App.Pages.Account
       {
         if (UserCreateDto.Password == ConfirmPassword)
         {
-          var cardDetail = _cardService.GetCardByNumberAsync(UserCreateDto.CardNumber);
+          var cardDetail =await _cardService.GetCardByNumberAsync(UserCreateDto.CardNumber);
           UserCreateDto.CardId = cardDetail.Id;
           var response = await _userService.RegisterAsync(UserCreateDto);
-          if (true)
+          if (response.ResponseCode == (int)DbReturnValue.CreateSuccess)
           {
             SuccessMessage = "User Created Successfully !";
             UserCreateDto = null;
